@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="mt-8 text-indigo-600">
 
           <a
-            href="https://github.com/YOUR_USERNAME/YOUR_REPOSITORY"
+            href="https://github.com/emmanuelkiptum21-jpg"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit my GitHub repository"
