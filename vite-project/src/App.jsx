@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import AddProject from "./components/AddProject";
 import SearchBar from "./components/SearchBar";
 import ProjectList from "./components/ProductList";
+import MainBanner from "./components/MainBanner";
+import Footer from "./components/Footer";
 function App() {
 
   // Store our projects
@@ -46,6 +48,7 @@ function App() {
     <div className="min-h-screen bg-slate-100 p-6">
 
       <Navbar />
+      <MainBanner />
 
       {/* Add Project Form */}
       <AddProject onAddProject={addProject} />
@@ -60,7 +63,7 @@ function App() {
         <ProjectList projects={filteredProjects} />
 
       </section>
-
+      <Footer />
     </div>
 
 
