@@ -4,7 +4,8 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import AddProject from "./components/AddProject";
-
+import SearchBar from "./components/SearchBar";
+import ProjectList from "./components/ProductList";
 function App() {
 
   // Store our projects
@@ -20,6 +21,13 @@ function App() {
       description: "A dictionary application built using JavaScript."
     }
   ]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredProjects = projects.filter((project) =>
+    `${project.title} ${project.description}`
+      .toLowerCase()
+      .includes(searchTerm.trim().toLowerCase())
+  );
 
   // Add a new project
   function addProject(newProject) {
@@ -37,46 +45,26 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-100 p-6">
 
-      <main className="mx-auto max-w-6xl">
+      <Navbar />
 
-        {/* Navigation */}
-        <Navbar />
+      {/* Add Project Form */}
+      <AddProject onAddProject={addProject} />
 
-        {/* Add Project Form */}
-        <AddProject onAddProject={addProject} />
+      <section id="projects" className="py-12">
 
-        {/* Display Projects */}
-        <section className="mt-10">
+        <SearchBar
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+        />
 
-          <h2 className="mb-6 text-2xl font-bold text-indigo-950">
-            My Projects
-          </h2>
+        <ProjectList projects={filteredProjects} />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                className="rounded-xl bg-white p-6 shadow-md"
-              >
-                <h3 className="mb-3 text-xl font-bold text-purple-700">
-                  {project.title}
-                </h3>
-
-                <p className="text-slate-600">
-                  {project.description}
-                </p>
-              </div>
-            ))}
-
-          </div>
-
-        </section>
-
-      </main>
+      </section>
 
     </div>
-  );
+
+
+  )
 }
 
 export default App;
